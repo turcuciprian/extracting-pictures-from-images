@@ -1,0 +1,9 @@
+destination
+*.tif
+*.tiff
+*.pql
+*.plq
+*.bmp
+.DS_Store
+*.xls
+*.txt

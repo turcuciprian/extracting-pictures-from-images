@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "image-extraction"
+version = "0.1.0"
+description = "scripts from extracting images from places"
+authors = ["turcuciprian <turcuciprian1@gmail.com>"]
+readme = "README.md"
+packages = [{include = "image_extraction"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pillow = "^9.5.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
