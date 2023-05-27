@@ -17,7 +17,7 @@ def bmp_tif_to_jpg(source_folder, output_folder):
                     im.convert('RGB').save(output_path, 'JPEG')
                     i += 1
                     
-source_folder = './source'
-output_folder = './destination'
+source_folder = './input'
+output_folder = './output'
 
 bmp_tif_to_jpg(source_folder, output_folder)
