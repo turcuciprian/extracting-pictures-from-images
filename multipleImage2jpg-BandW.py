@@ -4,9 +4,8 @@ from PIL import Image
 def bmp_tif_to_jpg(source_folder, output_folder):
     """
     Recursively traverses all folders inside `source_folder`, extracts all BMP and TIF images, converts them to JPG images,
-    and saves the JPG images to `output_folder` with unique file names starting from 0001.
+    and saves the JPG images to `output_folder` with unique file names reflecting the directory structure they are in.
     """
-    i = 1
     for root, dirs, files in os.walk(source_folder):
         for file in files:
             if file.lower().endswith('.bmp') or file.lower().endswith('.tif') or file.lower().endswith('.tiff'):
@@ -16,11 +15,18 @@ def bmp_tif_to_jpg(source_folder, output_folder):
                     bw = im.convert('L')
                     im = bw.convert('RGB')
 
-                    output_name = str(i).zfill(4) + '.jpg'
+                    # Construct the output name based on the directory structure
+                    relative_path = os.path.relpath(root, source_folder)
+                    base_name = os.path.splitext(file)[0]  # Get the filename without the extension
+                    relative_path_name = relative_path.replace(os.sep, '_')
+                    output_name = f"{relative_path_name}_{base_name}.jpg"
                     output_path = os.path.join(output_folder, output_name)
+
+                    # Ensure output directory exists
+                    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
                     im.save(output_path, 'JPEG')
-                    i += 1
-                    
+
 source_folder = './input'
 output_folder = './output'
 
